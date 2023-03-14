@@ -5,16 +5,6 @@ const process = require("process");
 const child_process = require("child_process");
 const path = require("path");
 const neededDirs = ["src", "public"];
-const neededFiles = [
-	".env.development",
-	".env.production",
-	".gitignore",
-	"index.html",
-	"prettier.config.js",
-	"vite.config.ts",
-	"tsconfig.json",
-	"README.md",
-];
 const extendPkg = {
 	scripts: {
 		dev: "vite",
@@ -68,6 +58,7 @@ program
 			}
 		} catch (error) {
 			console.log("error :>> ", error.message);
+			return;
 		}
 		base = ds;
 		init(ds);
@@ -110,13 +101,25 @@ function init(initPath) {
 		neededDirs.forEach((dir) => {
 			mkdirSync(`${initPath}\\${dir}`);
 		});
-		neededFiles.forEach((filename) => {
+		readdirSync(path.join(__dirname, "../configTmp")).forEach((filename) => {
 			const ds = path.join(__dirname, "../configTmp", filename);
 			const contentBuffer = readFileSync(ds);
 			writeFileSync(`${initPath}\\${filename}`, contentBuffer, {
 				flag: "w+",
 			});
 		});
+		writeFileSync(
+			`${initPath}\\.gitignore`,
+			`node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+.vscode
+*.zip
+components.d.ts`,
+			{ flag: "w" }
+		);
 	} catch (error) {
 		console.log("error :>> ", error);
 	}
