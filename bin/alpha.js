@@ -67,7 +67,7 @@ program
 program.parse();
 
 function executeCommand(cmd, path) {
-	child_process.execSync(cmd, {
+	return child_process.execSync(cmd, {
 		cwd: path,
 		stdio: "inherit",
 	});
@@ -94,9 +94,9 @@ function extendPackage(extend) {
 
 function init(initPath) {
 	try {
-		executeCommand("npm init", initPath);
+		executeCommand("npm init -y", initPath);
 		extendPackage(extendPkg);
-		executeCommand(`npm install`, initPath);
+	  executeCommand(`npm install`, initPath);
 
 		neededDirs.forEach((dir) => {
 			mkdirSync(`${initPath}\\${dir}`);
