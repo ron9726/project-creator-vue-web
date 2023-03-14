@@ -1,0 +1,14 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "noImplicitAny": false,
+    "baseUrl": "./",
+    "lib": ["ESNext","DOM"],
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"]
+}
