@@ -61,7 +61,9 @@ program
 			return;
 		}
 		base = ds;
+		console.log("=============init program started=============");
 		init(ds);
+		console.log("=============init program completed=============");
 	});
 
 program.parse();
@@ -92,25 +94,25 @@ function extendPackage(extend) {
 	});
 }
 
-function init(initPath) {
-	try {
-		executeCommand("npm init -y", initPath);
-		extendPackage(extendPkg);
-	  executeCommand(`npm install`, initPath);
+function createDir(targetPath) {
+	neededDirs.forEach((dir) => {
+		mkdirSync(`${targetPath}\\${dir}`);
+	});
+}
 
-		neededDirs.forEach((dir) => {
-			mkdirSync(`${initPath}\\${dir}`);
+function createFile(targetPath) {
+	const resolvedPath = path.join(__dirname, "../configTmp");
+	readdirSync(resolvedPath).forEach((filename) => {
+		const ds = path.join(resolvedPath, filename);
+		const contentBuffer = readFileSync(ds);
+		writeFileSync(`${targetPath}\\${filename}`, contentBuffer, {
+			flag: "w+",
 		});
-		readdirSync(path.join(__dirname, "../configTmp")).forEach((filename) => {
-			const ds = path.join(__dirname, "../configTmp", filename);
-			const contentBuffer = readFileSync(ds);
-			writeFileSync(`${initPath}\\${filename}`, contentBuffer, {
-				flag: "w+",
-			});
-		});
-		writeFileSync(
-			`${initPath}\\.gitignore`,
-			`node_modules
+		console.log(`File:${ds} created.`);
+	});
+	writeFileSync(
+		`${targetPath}\\.gitignore`,
+		`node_modules
 .DS_Store
 dist
 dist-ssr
@@ -118,8 +120,17 @@ dist-ssr
 .vscode
 *.zip
 components.d.ts`,
-			{ flag: "w" }
-		);
+		{ flag: "w" }
+	);
+}
+
+function init(initPath) {
+	try {
+		executeCommand("npm init -y", initPath);
+		extendPackage(extendPkg);
+		executeCommand(`npm install`, initPath);
+		createDir(initPath);
+		createFile(initPath);
 	} catch (error) {
 		console.log("error :>> ", error);
 	}
