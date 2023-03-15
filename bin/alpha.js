@@ -1,10 +1,10 @@
 #! /usr/bin/env node
 const { program } = require("commander");
-const { mkdirSync, readFileSync, writeFileSync, readdirSync } = require("fs");
+const { mkdirSync, readFileSync, writeFileSync, readdirSync, readdir } = require("fs");
 const process = require("process");
 const child_process = require("child_process");
 const path = require("path");
-const neededDirs = ["src", "public"];
+const neededDirs = ["src", "public", "src\\components"];
 const extendPkg = {
 	scripts: {
 		dev: "vite",
@@ -96,20 +96,27 @@ function extendPackage(extend) {
 
 function createDir(targetPath) {
 	neededDirs.forEach((dir) => {
-		mkdirSync(`${targetPath}\\${dir}`);
+		mkdirSync(`${targetPath}\\${dir}`, { recursive: true });
+	});
+}
+
+function copyFileTo(targetPath, srcPath) {
+	readdirSync(srcPath).forEach((filename) => {
+		const ds = path.join(srcPath, filename);
+		const contentBuffer = readFileSync(ds);
+		const file = `${targetPath}\\${filename}`;
+		writeFileSync(file, contentBuffer, {
+			flag: "w+",
+		});
+		console.log(`File:${file} created.`);
 	});
 }
 
 function createFile(targetPath) {
-	const resolvedPath = path.join(__dirname, "../configTmp");
-	readdirSync(resolvedPath).forEach((filename) => {
-		const ds = path.join(resolvedPath, filename);
-		const contentBuffer = readFileSync(ds);
-		writeFileSync(`${targetPath}\\${filename}`, contentBuffer, {
-			flag: "w+",
-		});
-		console.log(`File:${ds} created.`);
-	});
+	const resolvedConfigPath = path.join(__dirname, "../configTmp");
+	const resolvedComponentPath = path.join(__dirname, "../components");
+	copyFileTo(targetPath, resolvedConfigPath);
+	copyFileTo(`${targetPath}\\src\\components`, resolvedComponentPath);
 	writeFileSync(
 		`${targetPath}\\.gitignore`,
 		`node_modules
@@ -128,7 +135,7 @@ function init(initPath) {
 	try {
 		executeCommand("npm init -y", initPath);
 		extendPackage(extendPkg);
-		executeCommand(`npm install`, initPath);
+		// executeCommand(`npm install`, initPath);
 		createDir(initPath);
 		createFile(initPath);
 	} catch (error) {
