@@ -135,7 +135,7 @@ function init(initPath) {
 	try {
 		executeCommand("npm init -y", initPath);
 		extendPackage(extendPkg);
-		// executeCommand(`npm install`, initPath);
+		executeCommand(`npm install`, initPath);
 		createDir(initPath);
 		createFile(initPath);
 	} catch (error) {
