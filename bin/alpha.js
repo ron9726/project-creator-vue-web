@@ -69,7 +69,12 @@ program
 		init(ds);
 		console.log("=============init program completed=============");
 	});
-
+program
+	.command("update")
+	.description("若有更新，可以使用此命令来更新project-creator")
+	.action(() => {
+		executeCommand("npm install -g --force git+http://git.dqalpha.com/frontend/components/web/project-creator-vue-web.git");
+	});
 program.parse();
 
 function executeCommand(cmd, path) {
