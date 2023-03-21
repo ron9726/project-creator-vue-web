@@ -144,7 +144,7 @@ function init(initPath) {
 	try {
 		executeCommand("npm init -y", initPath);
 		extendPackage(extendPkg);
-		// executeCommand(`npm install --legacy-peer-deps`, initPath);
+		executeCommand(`npm install --legacy-peer-deps`, initPath);
 		createStructure(initPath);
 		createConfig(initPath);
 		const layoutModuleUrl = "http://git.dqalpha.com/frontend/components/web/layout_vue_web.git";
@@ -153,10 +153,10 @@ function init(initPath) {
 		const routerPath = "./src/router";
 		const alphaComponentModuleUrl = "http://git.dqalpha.com/frontend/components/web/alpha-components-antd.git";
 		const alphaComponentPath = "./src/components/alpha-components-antd";
-		executeCommand(`git -C ${initPath} init`);
-		executeCommand(`git -C ${initPath} submodule add ${layoutModuleUrl} ${layoutPath}`);
-		executeCommand(`git -C ${initPath} submodule add ${routerModuleUrl} ${routerPath}`);
-		executeCommand(`git -C ${initPath} submodule add ${alphaComponentModuleUrl} ${alphaComponentPath}`);
+		executeCommand(`git -C "${initPath}" init`);
+		executeCommand(`git -C "${initPath}" submodule add ${layoutModuleUrl} ${layoutPath}`);
+		executeCommand(`git -C "${initPath}" submodule add ${routerModuleUrl} ${routerPath}`);
+		executeCommand(`git -C "${initPath}" submodule add ${alphaComponentModuleUrl} ${alphaComponentPath}`);
 	} catch (error) {
 		console.log("error :>> ", error);
 	}
