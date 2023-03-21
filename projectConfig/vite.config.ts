@@ -38,7 +38,7 @@ export default ({ mode }) => {
       preprocessorOptions: {
         less: {
           javascriptEnabled: true,
-          additionalData: '@import "./src/assets/style/index.less";',
+          additionalData: '@import "./src/assets/style/less/index.less";',
           modifyVars: {
             '@primary-color': '#2F54EB',
             '@border-radius-base': '4px',

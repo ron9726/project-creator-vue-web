@@ -4,11 +4,13 @@
     "allowJs": true,
     "noImplicitAny": false,
     "baseUrl": "./",
-    "lib": ["ESNext","DOM"],
+    "lib": ["ESNext", "DOM"],
     "paths": {
       "@/*": ["src/*"]
     },
-    "forceConsistentCasingInFileNames": true
+    "types": ["vite/client"],
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitThis": false
   },
-  "include": ["src/**/*"]
+  "include": ["./src/**/*"]
 }

@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'YouSheBiaoTiHei';
+  src: url(/font/YouSheBiaoTiHei.ttf);
+}
+
+@font-face {
+  font-family: 'DIN Alternate';
+  src: url(/font/DINAlternateBold.ttf);
+}
+@font-face {
+  font-family: 'Alibaba PuHuiTi';
+  src: url(/font/AlibabaPuHuiTi-2-55-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Alibaba PuHuiTi 2.0';
+  src: url(/font/AlibabaPuHuiTi-2-55-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Oswald';
+  src: url(/font/Oswald-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Source Han Sans CN';
+  src: url(/font/SourceHanSansCN-Regular.ttf);
+}
