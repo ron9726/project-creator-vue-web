@@ -30,7 +30,7 @@ router.onError((err) => {
 	message.info(err.message);
 });
 routerStore.setMenus(routes[0].children);
-app.use();
+app.use(router);
 app.use(auth, {
 	userStore,
 	errorHandler() {
