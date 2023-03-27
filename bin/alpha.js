@@ -36,7 +36,7 @@ const extendPkg = {
 		prettier: "^2.8.4",
 		typescript: "~4.8.4",
 		"unplugin-vue-components": "^0.22.9",
-		vite: "^3.2.5",
+		vite: "^4.2.1",
 		"vite-plugin-commonjs": "^0.6.1",
 		"vite-plugin-compression": "^0.5.1",
 		"vite-plugin-optimize-persist": "^0.1.2",
