@@ -3,6 +3,7 @@
   "compilerOptions": {
     "allowJs": true,
     "noImplicitAny": false,
+    "jsx": "preserve",
     "baseUrl": "./",
     "lib": ["ESNext", "DOM"],
     "paths": {
