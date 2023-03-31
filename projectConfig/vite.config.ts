@@ -70,6 +70,9 @@ export default ({ mode }) => {
           },
         },
       },
+      modules: {
+        localsConvention: 'camelCase',
+      },
     },
     server: {
       host: '0.0.0.0',

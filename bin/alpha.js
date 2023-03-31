@@ -144,7 +144,9 @@ components.d.ts`,
 		{ flag: "w" }
 	);
 }
-
+function addSubmodule(initPath, sUrl, targetPath) {
+	executeCommand(`git -C "${initPath}" submodule add ${sUrl} ${targetPath}`);
+}
 function init(initPath) {
 	try {
 		executeCommand("npm init -y", initPath);
@@ -158,10 +160,13 @@ function init(initPath) {
 		const routerPath = "./src/router";
 		const alphaComponentModuleUrl = "http://git.dqalpha.com/frontend/components/web/alpha-components-antd.git";
 		const alphaComponentPath = "./src/components/alpha-components-antd";
+		const alphaSearchModuleUrl = "http://git.dqalpha.com/frontend/components/web/search_vue_web.git";
+		const alphaSearchPath = "./src/components/search";
 		executeCommand(`git -C "${initPath}" init`);
-		executeCommand(`git -C "${initPath}" submodule add ${layoutModuleUrl} ${layoutPath}`);
-		executeCommand(`git -C "${initPath}" submodule add ${routerModuleUrl} ${routerPath}`);
-		executeCommand(`git -C "${initPath}" submodule add ${alphaComponentModuleUrl} ${alphaComponentPath}`);
+		addSubmodule(initPath, layoutModuleUrl, layoutPath);
+		addSubmodule(initPath, routerModuleUrl, routerPath);
+		addSubmodule(initPath, alphaComponentModuleUrl, alphaComponentPath);
+		addSubmodule(initPath, alphaSearchModuleUrl, alphaSearchPath);
 	} catch (error) {
 		console.log("error :>> ", error);
 	}
