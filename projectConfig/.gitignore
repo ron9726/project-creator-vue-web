@@ -5,3 +5,4 @@ dist-ssr
 *.local
 .vscode
 *.zip
+components.d.ts
