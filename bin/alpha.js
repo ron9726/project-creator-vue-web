@@ -12,12 +12,14 @@ const extendPkg = {
 	},
 	dependencies: {
 		"ant-design-vue": "^3.2.15",
+		axios: "^1.3.5",
 		less: "^4.1.3",
 		"less-loader": "^11.1.0",
 		pinia: "^2.0.33",
 		uuid: "^9.0.0",
 		vue: "^3.2.47",
 		"vue-router": "^4.1.6",
+		xlsx: "https://cdn.sheetjs.com/xlsx-0.19.1/xlsx-0.19.1.tgz",
 	},
 	devDependencies: {
 		"@rushstack/eslint-patch": "^1.2.0",
@@ -172,6 +174,24 @@ function init(initPath) {
 		const alphaChangePwdPath = './src/components/changePwd';
 		const alphaSearchModuleUrl = "http://git.dqalpha.com/frontend/components/web/search_vue_web.git";
 		const alphaSearchPath = "./src/components/search";
+
+		const userModuleUrl = 'http://git.dqalpha.com/frontend/components/web/user_vue_web.git';
+		const userPath = './src/views/system/user';
+		const roleModuleUrl = 'http://git.dqalpha.com/frontend/components/web/role_vue_web.git';
+		const rolePath = './src/views/system/role';
+		const firstLoginModuleUrl = 'http://git.dqalpha.com/frontend/components/web/firstlogin_vue_web.git';
+		const firstLoginPath = './src/views/system/firstLogin';
+
+		const loginModuleUrl = 'http://git.dqalpha.com/frontend/components/web/login_vue_web.git';
+		const loginPath = './src/views/login';
+		
+		const loginLogModuleUrl = 'http://git.dqalpha.com/frontend/components/web/loginlog_vue_web.git';
+		const loginLogPath = './src/views/log/loginLog';
+		const operLogModuleUrl = 'http://git.dqalpha.com/frontend/components/web/operlog_vue_web.git';
+		const operLogPath = './src/views/log/operLog';
+
+		const unauthorizedModuleUrl = 'http://git.dqalpha.com/frontend/components/web/unauthorized_vue_web.git';
+		const unauthorizedPath = './src/views/unauthorized';
 		executeCommand(`git -C "${initPath}" init`);
 		addSubmodule(initPath, layoutModuleUrl, layoutPath);
 		addSubmodule(initPath, routerModuleUrl, routerPath);
@@ -182,6 +202,17 @@ function init(initPath) {
 		addSubmodule(initPath, alphaLoadingUrl, alphaLoadingPath);
 		addSubmodule(initPath, alphaChangePwdUrl, alphaChangePwdPath);
 		addSubmodule(initPath, alphaSearchModuleUrl, alphaSearchPath);
+
+		addSubmodule(initPath, userModuleUrl, userPath);
+		addSubmodule(initPath, roleModuleUrl, rolePath);
+		addSubmodule(initPath, firstLoginModuleUrl, firstLoginPath);
+
+		addSubmodule(initPath, loginModuleUrl, loginPath);
+
+		addSubmodule(initPath, loginLogModuleUrl, loginLogPath);
+		addSubmodule(initPath, operLogModuleUrl, operLogPath);
+
+		addSubmodule(initPath, unauthorizedModuleUrl, unauthorizedPath);
 	} catch (error) {
 		console.log("error :>> ", error);
 	}

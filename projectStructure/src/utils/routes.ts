@@ -63,7 +63,7 @@ const routes: RouteRecordRaw[] = [
 			{
 				path: "operation",
 				name: "operationLog",
-				component: () => import("@/views/log/operationLog/index.vue"),
+				component: () => import("@/views/log/operLog/index.vue"),
 				meta: {
 					title: "操作日志",
 					needRight: "monitor:operlog:list",

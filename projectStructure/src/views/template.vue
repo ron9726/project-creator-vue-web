@@ -1,14 +1,41 @@
 <template>
   <div class="alphaContainer">
     <div class="alphaSearch">
-      <a-input v-model:value="inputV" placeholder="输入工号/用户名/部门名称进行模糊查询" style="width: 25%; min-width: 280px"></a-input>
+      <Search>
+        <a-form-item label="test">
+          <a-input placeholder="test placeholder" />
+        </a-form-item>
+        <a-form-item label="test">
+          <a-input placeholder="test placeholder" />
+        </a-form-item>
+        <a-form-item label="test">
+          <a-input placeholder="test placeholder" />
+        </a-form-item>
+        <a-form-item label="test">
+          <a-input placeholder="test placeholder" />
+        </a-form-item>
+        <a-form-item label="test">
+          <a-input placeholder="test placeholder" />
+        </a-form-item>
+        <a-form-item label="test">
+          <a-input style="width: 350px" placeholder="test placeholder" />
+        </a-form-item>
+        <a-form-item label="test">
+          <a-input style="width: 350px" placeholder="test placeholder" />
+        </a-form-item>
+        <a-form-item label="test">
+          <a-input style="width: 350px" placeholder="test placeholder" />
+        </a-form-item>
+      </Search>
+      <!-- <a-input v-model:value="inputV" placeholder="输入工号/用户名/部门名称进行模糊查询" style="width: 25%; min-width: 280px"></a-input>
       <a-button type="primary" @click="search">查询</a-button>
-      <a-button>重置</a-button>
+      <a-button>重置</a-button> -->
     </div>
     <div class="alphaContent">
       <div class="alphaOperationArea">
         页面标题
-        <a-button class="floatRight" @click="reloadTableData">刷新</a-button>
+        <a-button class="floatRight" @click="reloadTableData">显示/隐藏取消按钮</a-button>
+        <a-button class="floatRight" @click="changeVisible">显示/隐藏Loading</a-button>
       </div>
       <AlphaTable :columns="columns" :table-config="tableConfig" ref="table">
         <template v-slot="{ column, record, reloadTableData }">
@@ -20,14 +47,18 @@
           </template>
         </template>
       </AlphaTable>
+      <Loading message="文件上传中，进度50%" :visible="visibility" :cancelable="cancelable" @cancel=""></Loading>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { AlphaTable, type TableConfig, generateColumns } from '@/components/alpha-components-antd';
+import AlphaTable from '@/components/table';
+import { generateColumns } from '@/components/table/utils/helper';
+import type { TableConfig } from '@/components/table';
+import Search from '@/components/search';
+import Loading from '@/components/loading';
 import { ref } from 'vue';
-
 const columns = generateColumns([
   ['id', 'id'],
   ['username', '名字'],
@@ -39,7 +70,12 @@ const tableConfig = ref<TableConfig>({
   fetchTableData: () => {
     return new Promise((res) => {
       setTimeout(() => {
-        res({ rows: [{ id: 1, username: 'test', sex: '6' }] });
+        const rows: any = [];
+        let index = 0;
+        do {
+          rows.push({ id: index++, username: 'test', sex: '6' });
+        } while (index < 100);
+        res({ rows });
       }, 2000);
     });
   },
@@ -59,11 +95,14 @@ const tableConfig = ref<TableConfig>({
 });
 
 const table = ref();
-
+const cancelable = ref(false);
+const visibility = ref(false);
 function reloadTableData() {
-  if (table.value) {
-    table.value.reloadTableData();
-  }
+  cancelable.value = !cancelable.value;
+}
+
+function changeVisible() {
+  visibility.value = !visibility.value;
 }
 
 function getSelectedKeys() {
