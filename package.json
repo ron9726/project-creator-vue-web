@@ -1,17 +1,22 @@
 {
-	"name": "project-creator",
-	"version": "1.1.0",
-	"description": "web模板脚手架",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"author": "zhengchangrong",
-	"license": "ISC",
-	"bin": {
-		"alpha": "./bin/alpha.js"
-	},
-	"dependencies": {
-		"commander": "^10.0.0"
-	}
+  "name": "project-creator",
+  "version": "1.1.0",
+  "description": "web模板脚手架",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install && husky set .husky/pre-commit \"npx prettier --write .\""
+  },
+  "author": "zhengchangrong",
+  "license": "ISC",
+  "bin": {
+    "alpha": "./bin/alpha.js"
+  },
+  "dependencies": {
+    "commander": "^10.0.0",
+    "husky": "^8.0.3"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.8"
+  }
 }

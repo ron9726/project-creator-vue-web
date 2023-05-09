@@ -14,8 +14,16 @@ module.exports = {
   requirePragma: false, //需要编译指示
   insertPragma: false, //插入编译指示
   proseWrap: 'never', //markdown中使用
-  htmlWhitespaceSensitivity: 'strict', //HTML 空白敏感性 css：css中重要，strict：所有标签周围的空格都是重要的，ignore：全部不重要
+  htmlWhitespaceSensitivity: 'ignore', //HTML 空白敏感性 css：css中重要，strict：所有标签周围的空格都是重要的，ignore：全部不重要
   vueIndentScriptAndStyle: false, //Vue 文件脚本和样式标签缩进
   endOfLine: 'crlf', //行结束
   rangeStart: 0, //格式化范围
+  overrides: [
+    {
+      files: '*.svg',
+      options: {
+        parser: 'html',
+      },
+    },
+  ],
 };

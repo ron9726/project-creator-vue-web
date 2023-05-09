@@ -11,11 +11,11 @@ module.exports = {
   bracketSpacing: true, //对象括号之间空格
   bracketSameLine: true, //将>多行 HTML（HTML、JSX、Vue、Angular）元素放在最后一行的末尾
   arrowParens: 'always', //箭头函数参数使用括号 always：使用，avoid：不使用
-  requirePragma: false,//需要编译指示
+  requirePragma: false, //需要编译指示
   insertPragma: false, //插入编译指示
   proseWrap: 'never', //markdown中使用
-  htmlWhitespaceSensitivity: 'strict',//HTML 空白敏感性 css：css中重要，strict：所有标签周围的空格都是重要的，ignore：全部不重要
+  htmlWhitespaceSensitivity: 'strict', //HTML 空白敏感性 css：css中重要，strict：所有标签周围的空格都是重要的，ignore：全部不重要
   vueIndentScriptAndStyle: false, //Vue 文件脚本和样式标签缩进
-  endOfLine: 'crlf',//行结束
-  rangeStart: 0 //格式化范围
-}
+  endOfLine: 'crlf', //行结束
+  rangeStart: 0, //格式化范围
+};

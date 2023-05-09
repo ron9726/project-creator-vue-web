@@ -5,11 +5,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed } from 'vue';
 
 interface SvgIcon {
-  iconClass: string
-  className?: string
+  iconClass: string;
+  className?: string;
 }
 
 export default defineComponent({
@@ -17,22 +17,22 @@ export default defineComponent({
   props: {
     iconClass: {
       type: String,
-      required: true
+      required: true,
     },
     className: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   setup(props: SvgIcon) {
-    const iconName = computed(() => `#icon-${props.iconClass}`)
-    const svgClass = computed(() => `svg-icon ${props.className}`)
+    const iconName = computed(() => `#icon-${props.iconClass}`);
+    const svgClass = computed(() => `svg-icon ${props.className}`);
     return {
       iconName,
-      svgClass
-    }
-  }
-})
+      svgClass,
+    };
+  },
+});
 </script>
 
 <style lang="less" scoped>
