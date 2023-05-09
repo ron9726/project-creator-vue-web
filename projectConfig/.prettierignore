@@ -1,0 +1,9 @@
+dist
+build
+node_modules
+**/*.zip
+**/*.7z
+.husky
+.vscode
+dist-ssr
+*.local

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install && husky set .husky/pre-commit \"npx prettier --write .\""
+    "prepare": "husky install && husky set .husky/pre-commit \"npx lint-staged\""
   },
   "author": "zhengchangrong",
   "license": "ISC",
@@ -13,10 +13,14 @@
     "alpha": "./bin/alpha.js"
   },
   "dependencies": {
-    "commander": "^10.0.0",
-    "husky": "^8.0.3"
+    "commander": "^10.0.0"
   },
   "devDependencies": {
-    "prettier": "^2.8.8"
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "husky": "^8.0.3"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue,md,svg,html,css,less,scss,sass,json}": "prettier --write"
   }
 }

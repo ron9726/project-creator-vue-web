@@ -9,6 +9,10 @@ const extendPkg = {
     dev: 'vite',
     build: 'vite build',
     serve: 'vite preview',
+    prepare: 'husky install && husky set .husky/pre-commit "npx lint-staged"',
+  },
+  'lint-staged': {
+    '*.{js,jsx,ts,tsx,vue,md,svg,html,css,less,scss,sass,json}': 'prettier --write',
   },
   dependencies: {
     'ant-design-vue': '^3.2.15',
@@ -45,6 +49,9 @@ const extendPkg = {
     'vite-plugin-package-config': '^0.1.1',
     vitest: '^0.29.1',
     'vue-tsc': '^1.2.0',
+    prettier: '^2.8.8',
+    husky: '^8.0.3',
+    'lint-staged': '^13.2.2',
   },
 };
 let base;
@@ -93,6 +100,7 @@ function extendPackage(extend) {
     name: undefined,
     version: undefined,
     scripts: undefined,
+    'lint-staged': undefined,
     dependencies: undefined,
     devDependencies: undefined,
   };
@@ -151,6 +159,7 @@ function addSubmodule(initPath, sUrl, targetPath) {
 }
 function init(initPath) {
   try {
+    executeCommand(`git -C "${initPath}" init`);
     executeCommand('npm init -y', initPath);
     extendPackage(extendPkg);
     executeCommand(`npm install --legacy-peer-deps`, initPath);
@@ -194,7 +203,6 @@ function init(initPath) {
 
     const unauthorizedModuleUrl = 'http://git.dqalpha.com/frontend/components/web/unauthorized_vue_web.git';
     const unauthorizedPath = './src/views/unauthorized';
-    executeCommand(`git -C "${initPath}" init`);
     addSubmodule(initPath, layoutModuleUrl, layoutPath);
     addSubmodule(initPath, routerModuleUrl, routerPath);
     addSubmodule(initPath, alphaTableUrl, alphaTablePath);
